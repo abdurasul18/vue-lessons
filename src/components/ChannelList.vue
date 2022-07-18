@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <h2 class="title">Список каналов</h2>
     <div class="filters">
       <span
@@ -23,6 +23,11 @@
         :key="index"
         :channel="item"
         :search="searchVal"
+        @deleteClicked="
+          (e) => {
+            deleteItem(index, e);
+          }
+        "
       ></ChannelCard>
     </div>
     <h5 v-else-if="!loading">Ma'lumot topilmadi</h5>
@@ -76,6 +81,12 @@ export default {
     },
   },
   methods: {
+    deleteItem(index, e) {
+      console.log(e);
+      if (confirm("Are you sure delete?")) {
+        this.channels.splice(index, 1);
+      }
+    },
     async getChannels() {
       try {
         this.loading = true;
@@ -94,24 +105,6 @@ export default {
 </script>
 
 <style>
-@import "@/assets/css/styles.css";
-.searchInput {
-  background: hsla(0, 0%, 100%, 0.12);
-  cursor: pointer;
-  padding: 1rem 1.5rem;
-  background: hsla(0, 0%, 100%, 0.08);
-  border: none;
-  -webkit-backdrop-filter: blur(1.5rem);
-  backdrop-filter: blur(1.5rem);
-  font-size: 1.25rem;
-  line-height: 1.2;
-  width: 100%;
-  color: #fff;
-  -webkit-transition: background 0.3s;
-  transition: background 0.3s;
-  width: 300px;
-  margin-bottom: 30px;
-}
 .filters {
   display: flex;
   align-items: center;

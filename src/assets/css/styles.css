@@ -4,10 +4,29 @@
     box-sizing: border-box;
 }
 body {
-    background: #000;
+    background: #000000;
     color: #fff;
+    overflow-x: hidden;
 }
 .container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.searchInput {
+    background: hsla(0, 0%, 100%, 0.12);
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    background: hsla(0, 0%, 100%, 0.08);
+    border: none;
+    -webkit-backdrop-filter: blur(1.5rem);
+    backdrop-filter: blur(1.5rem);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    width: 100%;
+    color: #fff;
+    -webkit-transition: background 0.3s;
+    transition: background 0.3s;
+    width: 300px;
+    margin-bottom: 30px;
 }
