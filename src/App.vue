@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      currentComp: "ChannelList",
+      currentComp: "FormComp",
     };
   },
   methods: {

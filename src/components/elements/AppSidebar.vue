@@ -1,25 +1,30 @@
 <template>
   <div class="sidebar" :class="{ show: sidebarShow }">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, tenetur
-    impedit culpa placeat voluptates laborum necessitatibus, laudantium eligendi
-    perferendis ipsum quod iste ea rerum? Laudantium blanditiis voluptate
-    placeat ipsa alias?
     <div class="close" @click="sidebarShow = false">X</div>
+    <div class="content">
+      <div class="header">
+        <slot name="header" :isShow="sidebarShow" prop2="Nimadir"></slot>
+      </div>
+      <div class="body">
+        <slot name="body" ></slot>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {},
   data() {
     return {
       sidebarShow: false,
     };
   },
-  methods : {
-    toggle(val){
-        this.sidebarShow = val
-    }
-  }
+  methods: {
+    toggle(val) {
+      this.sidebarShow = val;
+    },
+  },
 };
 </script>
 
@@ -48,5 +53,12 @@ export default {
   cursor: pointer;
   padding: 2px;
   border: 1px solid #000;
+}
+.header {
+  padding: 5px;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
 }
 </style>
