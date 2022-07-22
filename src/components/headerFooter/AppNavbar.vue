@@ -1,14 +1,26 @@
 <template>
   <nav>
     <ul>
-      <li @click="$emit('changeComp', 'ChannelList')">Channels</li>
-      <li @click="$emit('changeComp', 'FormComp')">Login</li>
+      <li >
+        <router-link :to="{name : 'Home'}"> Channels </router-link>
+      </li>
+      <li>
+        <router-link to="/movie"> Movies</router-link>
+      </li>
+      <li >
+        <router-link to="/login">
+          Login
+        </router-link>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+ 
+
+};
 </script>
 
 <style scoped>
@@ -26,5 +38,11 @@ li {
   flex-wrap: bold;
   margin-right: 25px;
   cursor: pointer;
+}
+a {
+  color: #fff;
+}
+.router-link-exact-active {
+  color: #f90;
 }
 </style>

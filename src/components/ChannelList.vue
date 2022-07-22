@@ -17,6 +17,9 @@
       type="text"
       v-model="searchVal"
     />
+    <my-button @click.native="goMovie">
+      to Movies
+    </my-button>
     <div class="row" v-if="this.channels.length">
       <ChannelCard
         v-for="(item, index) in filteredChannels"
@@ -38,7 +41,12 @@
 </template>
 
 <script>
+import MyButton from "@/components/elements/AppButton.vue"
+
 export default {
+  components : {
+    MyButton
+  },
   data() {
     return {
       channels: [],
@@ -97,8 +105,12 @@ export default {
         this.loading = false;
       }
     },
+    goMovie(){
+      this.$router.go(-1);
+    }
   },
   mounted() {
+    console.log(this.$route);
     this.getChannels();
   },
 };
