@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view/>
     <h2 class="title">Movies</h2>
 
     <input

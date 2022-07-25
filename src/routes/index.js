@@ -1,11 +1,11 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-import Home from "@/components/ChannelList.vue"
-import MoviesComp from "@/components/MovieList.vue"
-import NotFound from "@/components/NotFound.vue"
-import MovieSingle from "@/components/MovieSingle"
-import Login from "@/components/LoginForm.vue"
+import Home from "@/view/ChannelList.vue"
+import MoviesComp from "@/view/MovieList.vue"
+import NotFound from "@/view/NotFound.vue"
+import MovieSingle from "@/view/MovieSingle"
+import Login from "@/view/LoginForm.vue"
 Vue.use(Router)
 
 const routes = [

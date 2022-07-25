@@ -1,12 +1,16 @@
 <template>
-  <div class="sidebar" :class="{ show: sidebarShow }">
-    <div class="close" @click="sidebarShow = false">X</div>
+  <div class="sidebar" :class="{ show: $store.state.isOpen }">
+    <div class="close" @click="$store.commit('TOGGLE_IS_OPEN'), false">X</div>
     <div class="content">
       <div class="header">
-        <slot name="header" :isShow="sidebarShow" prop2="Nimadir"></slot>
+        <slot
+          name="header"
+          :isShow="$store.state.isOpen"
+          prop2="Nimadir"
+        ></slot>
       </div>
       <div class="body">
-        <slot name="body" ></slot>
+        <slot name="body"></slot>
       </div>
     </div>
   </div>
@@ -16,14 +20,10 @@
 export default {
   props: {},
   data() {
-    return {
-      sidebarShow: false,
-    };
+    return {};
   },
   methods: {
-    toggle(val) {
-      this.sidebarShow = val;
-    },
+    toggle() {},
   },
 };
 </script>

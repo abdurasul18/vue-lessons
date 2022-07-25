@@ -17,9 +17,13 @@
       type="text"
       v-model="searchVal"
     />
-    <my-button @click.native="goMovie">
-      to Movies
-    </my-button>
+    <my-button @click.native="goMovie"> to Movies </my-button>
+    <button
+      @click="$store.commit('TOGGLE_IS_OPEN', !$store.state.isOpen)"
+      class="my-btn"
+    >
+      Toggle Sidebar
+    </button>
     <div class="row" v-if="this.channels.length">
       <ChannelCard
         v-for="(item, index) in filteredChannels"
@@ -41,15 +45,15 @@
 </template>
 
 <script>
-import MyButton from "@/components/elements/AppButton.vue"
+import MyButton from "@/components/elements/AppButton.vue";
 
+import { mapState, mapActions, mapGetters } from "vuex";
 export default {
-  components : {
-    MyButton
+  components: {
+    MyButton,
   },
   data() {
     return {
-      channels: [],
       loading: false,
       categories: [
         {
@@ -87,31 +91,25 @@ export default {
           return el.name.toLowerCase().includes(this.searchVal.toLowerCase());
         });
     },
+    ...mapState('channel',["channels"]),
+    ...mapGetters('channel',["uzChannels"]),
   },
   methods: {
+    ...mapActions('channel',["getChannels"]),
     deleteItem(index, e) {
       console.log(e);
       if (confirm("Are you sure delete?")) {
         this.channels.splice(index, 1);
       }
     },
-    async getChannels() {
-      try {
-        this.loading = true;
-        let res = await fetch("https://api.allplay.uz/api/v1/iptv/channels");
-        let resJson = await res.json();
-        this.channels = resJson.data;
-      } finally {
-        this.loading = false;
-      }
-    },
-    goMovie(){
+    goMovie() {
       this.$router.go(-1);
-    }
+    },
   },
-  mounted() {
-    console.log(this.$route);
-    this.getChannels();
+  async mounted() {
+    this.loading = true;
+    await this.$store.dispatch("channel/getChannels")
+    this.loading = false;
   },
 };
 </script>
