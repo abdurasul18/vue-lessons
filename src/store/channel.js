@@ -1,3 +1,4 @@
+import axios from "axios"
 const state = {
     channels: [],
 }
@@ -9,10 +10,9 @@ const getters = {
 const actions = {
     async getChannels({ commit }) {
         try {
-            let res = await fetch("https://api.allplay.uz/api/v1/iptv/channels");
-            let resJson = await res.json()
-            commit("SET_CHANNELS", resJson.data)
-            return resJson.data
+            let res = await axios.get("https://api.allplay.uz/api/v1/iptv/channels");
+            commit("SET_CHANNELS", res.data.data)
+            return res.data.data
         }
         catch {
             commit("SET_CHANNELS", [])

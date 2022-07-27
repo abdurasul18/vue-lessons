@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1> {{ dmy(date) }} </h1>
     <h2 class="title">Список каналов</h2>
     <div class="filters">
       <span
@@ -46,7 +47,7 @@
 
 <script>
 import MyButton from "@/components/elements/AppButton.vue";
-
+import { dmy } from "@/util";
 import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   components: {
@@ -75,6 +76,7 @@ export default {
       ],
       activeCategory: "",
       searchVal: "",
+      date: 1658932795068,
     };
   },
   computed: {
@@ -91,11 +93,12 @@ export default {
           return el.name.toLowerCase().includes(this.searchVal.toLowerCase());
         });
     },
-    ...mapState('channel',["channels"]),
-    ...mapGetters('channel',["uzChannels"]),
+    ...mapState("channel", ["channels"]),
+    ...mapGetters("channel", ["uzChannels"]),
   },
   methods: {
-    ...mapActions('channel',["getChannels"]),
+    dmy,
+    ...mapActions("channel", ["getChannels"]),
     deleteItem(index, e) {
       console.log(e);
       if (confirm("Are you sure delete?")) {
@@ -108,7 +111,7 @@ export default {
   },
   async mounted() {
     this.loading = true;
-    await this.$store.dispatch("channel/getChannels")
+    await this.$store.dispatch("channel/getChannels");
     this.loading = false;
   },
 };

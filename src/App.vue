@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <AppNavbar />
-    <router-view />
+    <transition name="fade">
+      <router-view />
+    </transition>
     <AppSidebar ref="sidebar" id="myId">
       <template #header="{ prop2, isShow }">
         Bu Sidebar header {{ prop2 }} {{ isShow }}
@@ -21,10 +23,12 @@ import AppSidebar from "@/components/elements/AppSidebar.vue";
 export default {
   components: {
     AppNavbar,
-    AppSidebar
+    AppSidebar,
   },
   data() {
-    return {};
+    return {
+      show: false,
+    };
   },
   methods: {},
   mounted() {},
@@ -32,5 +36,15 @@ export default {
 </script>
 
 <style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+ transform: translateX(100%);
+ transition: all ease 0.5s
+}
 @import "@/assets/css/styles.css";
 </style>
