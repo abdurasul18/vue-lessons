@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       show: false,
+      isShow: false,
     };
   },
   methods: {},
@@ -35,16 +36,19 @@ export default {
 };
 </script>
 
+<style lang="scss">
+
+</style>
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
- transform: translateX(100%);
- transition: all ease 0.5s
+  transform: translateX(100%);
+  transition: all ease 0.5s;
 }
 @import "@/assets/css/styles.css";
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import channel from "./channel"
+import auth from "./auth"
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
   },
   modules: {
     channel,
+    auth
   }
 })
 

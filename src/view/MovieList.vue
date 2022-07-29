@@ -2,8 +2,7 @@
   <div>
     <router-view />
     <h1>{{ dmy(date2) }}</h1>
-    <multiselect @select="metod" :options="options" v-model="selectedValue">
-    </multiselect>
+   
 
     <swiper :options="myOptions">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
